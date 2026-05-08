@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Lead {
+  id          String       @id @default(cuid())
+  name        String
+  company     String?
+  phone       String?
+  status      String       @default("New")
+  followUpAt  DateTime?    @map("follow_up_at")
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+  discussions Discussion[]
+
+  // Indexes for common queries
+  @@index([status])
+  @@index([createdAt])
+  @@index([updatedAt])
+  @@index([followUpAt])
+  @@map("leads")
+}
+
+model Discussion {
+  id          String   @id @default(cuid())
+  leadId      String   @map("lead_id")
+  note        String
+  followUpAt  DateTime? @map("follow_up_at")
+  createdAt   DateTime @default(now()) @map("created_at")
+  lead        Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  // Indexes for common queries
+  @@index([leadId])
+  @@index([createdAt])
+  @@map("discussions")
+}

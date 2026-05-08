@@ -1,0 +1,71 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+.vite/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Testing
+coverage/
+.nyc_output/
+*.lcov
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+_tmp_*/
+temp/
+tmp/
+*.tmp
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+leadflow_postgres/
+
+# Docker
+.dockerignore
+
+# Prisma
+.env.test
+.env.production.local
+
+# Node.js
+.npm/
+
+# Misc
+.cache/
+.parcel-cache/
+dist-ssr/
+.turbo/
