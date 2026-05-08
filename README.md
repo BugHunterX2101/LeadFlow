@@ -2,17 +2,17 @@
 
 A modern, full-stack CRM application for managing sales leads with real-time discussions, follow-ups, and status tracking. Built with React, Node.js, Express, Prisma, and PostgreSQL.
 
-## 🎯 Features
+## Features
 
 - **Lead Management**: Create, read, update, and filter sales leads
-- **Status Tracking**: Track leads through pipeline stages (New → Won/Lost)
+- **Status Tracking**: Track leads through pipeline stages (New to Won/Lost)
 - **Discussion Timeline**: Log discussions and follow-ups per lead
 - **Smart Follow-up Reminders**: See today's follow-up leads at a glance
 - **Search & Filter**: Find leads by name or status in real-time
 - **Secure API**: Input validation, CORS protection, error handling
 - **Docker Support**: Complete containerization with PostgreSQL
 
-## 🏗️ Architecture
+## Architecture
 
 ```mermaid
 graph TB
@@ -48,87 +48,87 @@ graph TB
     style Database fill:#336791,stroke:#333,color:#fff
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 LeadFlow/
-├── backend/                          # Node.js Express API
-│   ├── src/
-│   │   ├── app.js                   # Express app setup with CORS, routes
-│   │   ├── index.js                 # Server entry point, graceful shutdown
-│   │   ├── controllers/
-│   │   │   ├── leads.controller.js  # Lead request handlers
-│   │   │   └── discussions.controller.js  # Discussion handlers
-│   │   ├── services/
-│   │   │   ├── leads.service.js     # Lead business logic
-│   │   │   └── discussions.service.js   # Discussion logic
-│   │   ├── routes/
-│   │   │   ├── leads.js             # /api/leads routes
-│   │   │   └── discussions.js       # /api/leads/:id/discussions routes
-│   │   ├── middleware/
-│   │   │   ├── validation.js        # Input validation (XSS prevention)
-│   │   │   └── errorHandler.js      # Centralized error handling
-│   │   └── lib/
-│   │       ├── prisma.js            # Prisma client singleton
-│   │       ├── errors.js            # Custom error classes
-│   │       └── env.js               # Environment validation
-│   ├── prisma/
-│   │   ├── schema.prisma            # Database schema with indexes
-│   │   └── seed.js                  # Seed script (5 sample leads)
-│   ├── test/
-│   │   └── leadflow.test.js         # 5 integration tests
-│   ├── Dockerfile                   # Alpine-based image with Prisma
-│   └── package.json
-│
-├── frontend/                        # React + Vite SPA
-│   ├── src/
-│   │   ├── App.jsx                 # Root component
-│   │   ├── main.jsx                # React entry with ErrorBoundary
-│   │   ├── style.css               # Global styles
-│   │   ├── api/
-│   │   │   └── leadflow.js         # Typed API client
-│   │   ├── components/
-│   │   │   ├── layout/
-│   │   │   │   └── Header.jsx      # Logo & Add Lead button
-│   │   │   ├── leads/
-│   │   │   │   ├── LeadList.jsx    # Filterable lead list
-│   │   │   │   ├── LeadCard.jsx    # Individual lead row
-│   │   │   │   ├── FilterBar.jsx   # Status filter pills
-│   │   │   │   ├── SearchBar.jsx   # Name search input
-│   │   │   │   └── FollowUpSection.jsx  # Today's reminders
-│   │   │   ├── modals/
-│   │   │   │   ├── AddLeadModal.jsx    # Create lead form
-│   │   │   │   └── LeadTimelineModal.jsx  # Detail & discussions
-│   │   │   ├── ui/
-│   │   │   │   ├── Modal.jsx       # Accessible modal wrapper
-│   │   │   │   ├── StatusBadge.jsx
-│   │   │   │   ├── FollowUpBadge.jsx
-│   │   │   │   └── HighlightText.jsx
-│   │   │   └── ErrorBoundary.jsx   # Error catching component
-│   │   ├── hooks/
-│   │   │   ├── useLeads.js         # Fetch & filter leads
-│   │   │   └── useLeadDetail.js    # Single lead with discussions
-│   │   ├── types/
-│   │   │   └── index.js            # Status enums & metadata
-│   │   ├── utils/
-│   │   │   ├── date.js             # Relative time formatting
-│   │   │   ├── filters.js          # Lead filtering logic (+ tests)
-│   │   │   └── status.js           # Status colors & labels
-│   │   └── test/
-│   │       ├── App.test.jsx        # Smoke test with mocked API
-│   │       └── utils/filters.test.js  # 3 unit tests
-│   ├── Dockerfile                  # Node:20-alpine
-│   ├── vite.config.js              # React plugin, dev server on 5173
-│   └── package.json
-│
-├── docker-compose.yml              # 3 services: postgres, backend, frontend
-├── .gitignore                       # Exclude node_modules, dist, etc
-├── .env.example                     # Template for env variables
-├── package.json                     # Root workspace config
-└── README.md                        # This file
+    backend/ - Node.js Express API
+        src/
+            app.js - Express app setup with CORS and routes
+            index.js - Server entry point and graceful shutdown
+            controllers/
+                leads.controller.js - Lead request handlers
+                discussions.controller.js - Discussion handlers
+            services/
+                leads.service.js - Lead business logic
+                discussions.service.js - Discussion logic
+            routes/
+                leads.js - /api/leads routes
+                discussions.js - /api/leads/:id/discussions routes
+            middleware/
+                validation.js - Input validation and XSS prevention
+                errorHandler.js - Centralized error handling
+            lib/
+                prisma.js - Prisma client singleton
+                errors.js - Custom error classes
+                env.js - Environment validation
+        prisma/
+            schema.prisma - Database schema with indexes
+            seed.js - Seed script with 5 sample leads
+        test/
+            leadflow.test.js - 5 integration tests
+        Dockerfile - Alpine-based image with Prisma
+        package.json
+
+    frontend/ - React and Vite SPA
+        src/
+            App.jsx - Root component
+            main.jsx - React entry with ErrorBoundary
+            style.css - Global styles
+            api/
+                leadflow.js - Typed API client
+            components/
+                layout/
+                    Header.jsx - Logo and Add Lead button
+                leads/
+                    LeadList.jsx - Filterable lead list
+                    LeadCard.jsx - Individual lead row
+                    FilterBar.jsx - Status filter pills
+                    SearchBar.jsx - Name search input
+                    FollowUpSection.jsx - Today's reminders
+                modals/
+                    AddLeadModal.jsx - Create lead form
+                    LeadTimelineModal.jsx - Detail and discussions
+                ui/
+                    Modal.jsx - Accessible modal wrapper
+                    StatusBadge.jsx
+                    FollowUpBadge.jsx
+                    HighlightText.jsx
+                ErrorBoundary.jsx - Error catching component
+            hooks/
+                useLeads.js - Fetch and filter leads
+                useLeadDetail.js - Single lead with discussions
+            types/
+                index.js - Status enums and metadata
+            utils/
+                date.js - Relative time formatting
+                filters.js - Lead filtering logic and tests
+                status.js - Status colors and labels
+            test/
+                App.test.jsx - Smoke test with mocked API
+                utils/filters.test.js - 3 unit tests
+        Dockerfile - Node 20 Alpine
+        vite.config.js - React plugin and dev server on 5173
+        package.json
+
+    docker-compose.yml - 3 services: postgres, backend, frontend
+    .gitignore - Exclude node_modules, dist, and similar files
+    .env.example - Template for environment variables
+    package.json - Root workspace config
+    README.md - This file
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Node.js 20+
@@ -176,7 +176,7 @@ npm run dev:backend
 npm run dev:frontend
 ```
 
-## 📊 API Endpoints
+## API Endpoints
 
 ### Leads
 - `GET /api/leads` - List all leads
@@ -190,16 +190,16 @@ npm run dev:frontend
 ### Health
 - `GET /health` - API health check
 
-## 🔐 Security Features
+## Security Features
 
-- ✅ **CORS Protection** - Restricted to known origins (localhost:5173, localhost:3000)
-- ✅ **Input Validation** - Sanitizes all user inputs, prevents XSS
-- ✅ **Error Boundary** - React error boundary catches component crashes
-- ✅ **Graceful Shutdown** - Properly closes DB connections on SIGTERM/SIGINT
-- ✅ **Database Indexes** - Optimized queries on status, dates, lead IDs
-- ✅ **Environment Variables** - Validates required env vars at startup
+- **CORS Protection** - Restricted to known origins (localhost:5173, localhost:3000)
+- **Input Validation** - Sanitizes all user inputs and prevents XSS
+- **Error Boundary** - React error boundary catches component crashes
+- **Graceful Shutdown** - Properly closes DB connections on SIGTERM/SIGINT
+- **Database Indexes** - Optimized queries on status, dates, and lead IDs
+- **Environment Variables** - Validates required env vars at startup
 
-## 🗄️ Database Schema
+## Database Schema
 
 ### Leads
 ```sql
@@ -218,7 +218,7 @@ updatedAt   DateTime (auto-updated)
 ### Discussions
 ```sql
 id          CUID (primary key)
-leadId      String (foreign key → leads.id)
+leadId      String (foreign key to leads.id)
 note        String (required)
 followUpAt  DateTime (nullable)
 createdAt   DateTime (default: now)
@@ -227,7 +227,7 @@ lead        Lead (cascade delete)
 
 **Indexes**: leadId, createdAt
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Backend integration tests (5 tests)
@@ -237,7 +237,7 @@ npm test
 npm test --prefix frontend
 ```
 
-## 📦 Technologies
+## Technologies
 
 | Component | Tech Stack |
 |-----------|-----------|
@@ -248,7 +248,7 @@ npm test --prefix frontend
 | **Deployment** | Docker, Docker Compose |
 | **Security** | CORS, Input validation, XSS prevention |
 
-## 📝 Environment Variables
+## Environment Variables
 
 ```bash
 # Backend
@@ -260,7 +260,7 @@ NODE_ENV=development
 VITE_API_BASE_URL=http://localhost:3001
 ```
 
-## 🎨 Lead Statuses
+## Lead Statuses
 
 - **New** (Green) - Newly added lead
 - **Contacted** (Orange) - Initial contact made
@@ -269,7 +269,7 @@ VITE_API_BASE_URL=http://localhost:3001
 - **Won** (Slate) - Closed deal
 - **Lost** (Slate) - Not qualified
 
-## 🔄 Development Workflow
+## Development Workflow
 
 1. Create a feature branch: `git checkout -b feature/your-feature`
 2. Make changes and test: `npm test`
@@ -277,7 +277,7 @@ VITE_API_BASE_URL=http://localhost:3001
 4. Push: `git push origin feature/your-feature`
 5. Open pull request on GitHub
 
-## 📄 Scripts
+## Scripts
 
 ```bash
 # Frontend
@@ -295,27 +295,27 @@ docker compose up --build    # Start all services
 docker compose down          # Stop all services
 ```
 
-## 🐛 Known Issues / TODO
+## Known Issues and TODO
 
-- [ ] Add pagination (currently loads all leads)
-- [ ] Add role-based authentication
-- [ ] Add soft deletes for audit trail
-- [ ] Implement rate limiting
-- [ ] Add phone number validation
-- [ ] Upgrade Prisma to latest major version
+- Add pagination (currently loads all leads)
+- Add role-based authentication
+- Add soft deletes for audit trail
+- Implement rate limiting
+- Add phone number validation
+- Upgrade Prisma to latest major version
 
-## 📧 Contact & Support
+## Contact and Support
 
 For issues, questions, or contributions, please:
 - Open an [issue](https://github.com/yourusername/LeadFlow/issues)
 - Submit a [pull request](https://github.com/yourusername/LeadFlow/pulls)
 
-## 📄 License
+## License
 
 MIT License - see LICENSE file for details
 
 ---
 
-**Built with ❤️ for sales teams**
+**Built for sales teams**
 
 Last updated: May 2026
