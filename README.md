@@ -310,6 +310,12 @@ For issues, questions, or contributions, please:
 - Open an [issue](https://github.com/yourusername/LeadFlow/issues)
 - Submit a [pull request](https://github.com/yourusername/LeadFlow/pulls)
 
+## Contributors
+
+This project is maintained by the following contributors:
+
+- BugHunterX2101 <veditagrawal21@gmail.com>
+
 ## License
 
 MIT License - see LICENSE file for details
