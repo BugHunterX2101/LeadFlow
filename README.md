@@ -52,80 +52,80 @@ graph TB
 
 ```
 LeadFlow/
-    backend/ - Node.js Express API
-        src/
-            app.js - Express app setup with CORS and routes
-            index.js - Server entry point and graceful shutdown
-            controllers/
-                leads.controller.js - Lead request handlers
-                discussions.controller.js - Discussion handlers
-            services/
-                leads.service.js - Lead business logic
-                discussions.service.js - Discussion logic
-            routes/
-                leads.js - /api/leads routes
-                discussions.js - /api/leads/:id/discussions routes
-            middleware/
-                validation.js - Input validation and XSS prevention
-                errorHandler.js - Centralized error handling
-            lib/
-                prisma.js - Prisma client singleton
-                errors.js - Custom error classes
-                env.js - Environment validation
-        prisma/
-            schema.prisma - Database schema with indexes
-            seed.js - Seed script with 5 sample leads
-        test/
-            leadflow.test.js - 5 integration tests
-        Dockerfile - Alpine-based image with Prisma
-        package.json
-
-    frontend/ - React and Vite SPA
-        src/
-            App.jsx - Root component
-            main.jsx - React entry with ErrorBoundary
-            style.css - Global styles
-            api/
-                leadflow.js - Typed API client
-            components/
-                layout/
-                    Header.jsx - Logo and Add Lead button
-                leads/
-                    LeadList.jsx - Filterable lead list
-                    LeadCard.jsx - Individual lead row
-                    FilterBar.jsx - Status filter pills
-                    SearchBar.jsx - Name search input
-                    FollowUpSection.jsx - Today's reminders
-                modals/
-                    AddLeadModal.jsx - Create lead form
-                    LeadTimelineModal.jsx - Detail and discussions
-                ui/
-                    Modal.jsx - Accessible modal wrapper
-                    StatusBadge.jsx
-                    FollowUpBadge.jsx
-                    HighlightText.jsx
-                ErrorBoundary.jsx - Error catching component
-            hooks/
-                useLeads.js - Fetch and filter leads
-                useLeadDetail.js - Single lead with discussions
-            types/
-                index.js - Status enums and metadata
-            utils/
-                date.js - Relative time formatting
-                filters.js - Lead filtering logic and tests
-                status.js - Status colors and labels
-            test/
-                App.test.jsx - Smoke test with mocked API
-                utils/filters.test.js - 3 unit tests
-        Dockerfile - Node 20 Alpine
-        vite.config.js - React plugin and dev server on 5173
-        package.json
-
-    docker-compose.yml - 3 services: postgres, backend, frontend
-    .gitignore - Exclude node_modules, dist, and similar files
-    .env.example - Template for environment variables
-    package.json - Root workspace config
-    README.md - This file
+├── backend/                          # Node.js Express API
+│   ├── src/
+│   │   ├── app.js                   # Express app setup with CORS, routes
+│   │   ├── index.js                 # Server entry point, graceful shutdown
+│   │   ├── controllers/
+│   │   │   ├── leads.controller.js  # Lead request handlers
+│   │   │   └── discussions.controller.js  # Discussion handlers
+│   │   ├── services/
+│   │   │   ├── leads.service.js     # Lead business logic
+│   │   │   └── discussions.service.js   # Discussion logic
+│   │   ├── routes/
+│   │   │   ├── leads.js             # /api/leads routes
+│   │   │   └── discussions.js       # /api/leads/:id/discussions routes
+│   │   ├── middleware/
+│   │   │   ├── validation.js        # Input validation (XSS prevention)
+│   │   │   └── errorHandler.js      # Centralized error handling
+│   │   └── lib/
+│   │       ├── prisma.js            # Prisma client singleton
+│   │       ├── errors.js            # Custom error classes
+│   │       └── env.js               # Environment validation
+│   ├── prisma/
+│   │   ├── schema.prisma            # Database schema with indexes
+│   │   └── seed.js                  # Seed script (5 sample leads)
+│   ├── test/
+│   │   └── leadflow.test.js         # 5 integration tests
+│   ├── Dockerfile                   # Alpine-based image with Prisma
+│   └── package.json
+│
+├── frontend/                        # React + Vite SPA
+│   ├── src/
+│   │   ├── App.jsx                 # Root component
+│   │   ├── main.jsx                # React entry with ErrorBoundary
+│   │   ├── style.css               # Global styles
+│   │   ├── api/
+│   │   │   └── leadflow.js         # Typed API client
+│   │   ├── components/
+│   │   │   ├── layout/
+│   │   │   │   └── Header.jsx      # Logo & Add Lead button
+│   │   │   ├── leads/
+│   │   │   │   ├── LeadList.jsx    # Filterable lead list
+│   │   │   │   ├── LeadCard.jsx    # Individual lead row
+│   │   │   │   ├── FilterBar.jsx   # Status filter pills
+│   │   │   │   ├── SearchBar.jsx   # Name search input
+│   │   │   │   └── FollowUpSection.jsx  # Today's reminders
+│   │   │   ├── modals/
+│   │   │   │   ├── AddLeadModal.jsx    # Create lead form
+│   │   │   │   └── LeadTimelineModal.jsx  # Detail & discussions
+│   │   │   ├── ui/
+│   │   │   │   ├── Modal.jsx       # Accessible modal wrapper
+│   │   │   │   ├── StatusBadge.jsx
+│   │   │   │   ├── FollowUpBadge.jsx
+│   │   │   │   └── HighlightText.jsx
+│   │   │   └── ErrorBoundary.jsx   # Error catching component
+│   │   ├── hooks/
+│   │   │   ├── useLeads.js         # Fetch & filter leads
+│   │   │   └── useLeadDetail.js    # Single lead with discussions
+│   │   ├── types/
+│   │   │   └── index.js            # Status enums & metadata
+│   │   ├── utils/
+│   │   │   ├── date.js             # Relative time formatting
+│   │   │   ├── filters.js          # Lead filtering logic (+ tests)
+│   │   │   └── status.js           # Status colors & labels
+│   │   └── test/
+│   │       ├── App.test.jsx        # Smoke test with mocked API
+│   │       └── utils/filters.test.js  # 3 unit tests
+│   ├── Dockerfile                  # Node:20-alpine
+│   ├── vite.config.js              # React plugin, dev server on 5173
+│   └── package.json
+│
+├── docker-compose.yml              # 3 services: postgres, backend, frontend
+├── .gitignore                       # Exclude node_modules, dist, etc
+├── .env.example                     # Template for env variables
+├── package.json                     # Root workspace config
+└── README.md                        # This file
 ```
 
 ## Quick Start
