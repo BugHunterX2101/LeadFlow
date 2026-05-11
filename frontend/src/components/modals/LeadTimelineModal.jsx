@@ -41,7 +41,7 @@ export function LeadTimelineModal({ lead, onClose, onSaveStatus, onSaveDiscussio
     setSavingNote(true)
     setError('')
     try {
-      const followUpAt = setFollowUp ? `${followUpDate}T${followUpTime}:00Z` : undefined
+      const followUpAt = setFollowUp ? new Date(`${followUpDate}T${followUpTime}`).toISOString() : undefined
       await onSaveDiscussion({ note, follow_up_at: followUpAt, status })
       setNote('')
       setSetFollowUp(false)
@@ -73,7 +73,7 @@ export function LeadTimelineModal({ lead, onClose, onSaveStatus, onSaveDiscussio
           <select value={status} onChange={(event) => setStatus(event.target.value)}>
             {Object.keys(STATUS_META).map((option) => (
               <option key={option} value={option}>
-                {option}
+                {STATUS_META[option].label}
               </option>
             ))}
           </select>

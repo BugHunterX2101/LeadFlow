@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Modal } from '../ui/Modal.jsx'
+import { STATUSES, STATUS_META } from '../../types/index.js'
 
 export function AddLeadModal({ onClose, onSave }) {
   const [form, setForm] = useState({ name: '', company: '', phone: '', status: 'New' })
@@ -51,9 +52,9 @@ export function AddLeadModal({ onClose, onSave }) {
         <label>
           <span>Status</span>
           <select value={form.status} onChange={(event) => setForm({ ...form, status: event.target.value })}>
-            {['New', 'Contacted', 'Qualified', 'Proposal Sent', 'Won', 'Lost'].map((status) => (
+            {STATUSES.filter((s) => s !== 'All').map((status) => (
               <option key={status} value={status}>
-                {status}
+                {STATUS_META[status]?.label ?? status}
               </option>
             ))}
           </select>

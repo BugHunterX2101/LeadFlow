@@ -1,10 +1,7 @@
 import { LeadCard } from './LeadCard.jsx'
-import { getTodayFollowUps } from '../../utils/filters.js'
 
 export function FollowUpSection({ leads, onLeadClick, searchQuery }) {
-  const followUps = getTodayFollowUps(leads)
-
-  if (!followUps.length) {
+  if (!leads.length) {
     return null
   }
 
@@ -15,7 +12,7 @@ export function FollowUpSection({ leads, onLeadClick, searchQuery }) {
         <span>📣</span>
       </div>
       <div className="lead-list followup-list">
-        {followUps.map((lead) => (
+        {leads.map((lead) => (
           <LeadCard key={lead.id} lead={lead} searchQuery={searchQuery} onClick={() => onLeadClick(lead.id)} />
         ))}
       </div>

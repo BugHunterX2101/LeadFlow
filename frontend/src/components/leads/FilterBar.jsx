@@ -1,4 +1,4 @@
-import { STATUSES } from '../../types/index.js'
+import { STATUSES, STATUS_META } from '../../types/index.js'
 
 export function FilterBar({ activeStatus, onChange }) {
   return (
@@ -11,7 +11,7 @@ export function FilterBar({ activeStatus, onChange }) {
           aria-pressed={activeStatus === status}
           onClick={() => onChange(status)}
         >
-          {status}
+          {STATUS_META[status]?.label ?? status}
         </button>
       ))}
     </div>
